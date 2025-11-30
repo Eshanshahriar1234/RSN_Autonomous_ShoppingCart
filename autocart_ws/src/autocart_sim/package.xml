@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>autocart_sim</name>
+  <version>0.0.1</version>
+  <description>Autonomous shopping cart return simulation for Stop and Shop Brigham Circle</description>
+  <maintainer email="aradhya.ro@northeastern.edu">Pinky</maintainer>
+  <license>MIT</license>
+
+  <!-- Build tool -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Runtime / build dependencies -->
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>builtin_interfaces</depend>
+
+  <depend>cv_bridge</depend>
+  <depend>image_transport</depend>
+
+  <depend>gazebo_ros</depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
+
