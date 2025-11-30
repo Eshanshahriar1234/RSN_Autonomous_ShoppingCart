@@ -1,0 +1,7 @@
+[console_scripts]
+ekf_fusion_node = autocart_sim.nodes.ekf_fusion_node:main
+gps_odom_node = autocart_sim.nodes.gps_odom_node:main
+imu_odom_node = autocart_sim.nodes.imu_odom_node:main
+lane_camera_node = autocart_sim.nodes.lane_camera_node:main
+stuck_detector_node = autocart_sim.nodes.stuck_detector_node:main
+waypoint_nav_node = autocart_sim.nodes.waypoint_nav_node:main
