@@ -161,11 +161,11 @@ Publishes: `/cart_stuck_alert`
 
 ---
 
-## 👥 Team Members (Add your names)
-- Member A – Simulation world, camera perception  
-- Member B – IMU processing  
-- Member C – GPS + navigation  
-- Member D – EKF fusion + safety  
+## 👥 Team Members
+- RM – Simulation world, camera perception  
+- Rohit – IMU processing  
+- Dhanush – GPS + navigation  
+- Ishaan – EKF fusion + safety  
 
 ---
 
