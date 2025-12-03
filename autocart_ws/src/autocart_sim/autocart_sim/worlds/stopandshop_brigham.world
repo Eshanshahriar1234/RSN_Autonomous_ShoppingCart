@@ -2,17 +2,16 @@
 <sdf version="1.10">
   <world name="stopandshop_brigham_world">
 
-    <!-- Basic physics -->
     <gravity>0 0 -9.81</gravity>
 
-    <!-- Simple sun light (no external model URI) -->
+    <!-- Sun light -->
     <light name="sun" type="directional">
       <cast_shadows>true</cast_shadows>
-      <pose>0 0 10 0 -0.5 0</pose>
+      <pose>0 0 30 0 -0.6 0</pose>
       <diffuse>1 1 1 1</diffuse>
       <specular>0.1 0.1 0.1 1</specular>
       <attenuation>
-        <range>1000</range>
+        <range>2000</range>
         <constant>0.9</constant>
         <linear>0.01</linear>
         <quadratic>0.001</quadratic>
@@ -20,15 +19,15 @@
       <direction>-0.5 0.5 -1</direction>
     </light>
 
-    <!-- Simple infinite ground plane (no model:// URI) -->
-    <model name="ground_plane">
+    <!-- Asphalt parking lot -->
+    <model name="parking_lot">
       <static>true</static>
       <link name="link">
         <collision name="collision">
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>100 100</size>
+              <size>80 80</size>
             </plane>
           </geometry>
         </collision>
@@ -36,18 +35,420 @@
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>100 100</size>
+              <size>80 80</size>
             </plane>
           </geometry>
           <material>
-            <ambient>0.3 0.3 0.3 1</ambient>
-            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <ambient>0.08 0.08 0.08 1</ambient>
+            <diffuse>0.12 0.12 0.12 1</diffuse>
           </material>
         </visual>
       </link>
     </model>
 
-    <!-- You can later add parked cars, lanes, etc. as more <model> blocks -->
+    <!-- Store front wall with red banner -->
+    <model name="store_front">
+      <static>true</static>
+      <link name="body">
+        <pose>0 -30 4 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>50 1 8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="wall">
+          <geometry>
+            <box>
+              <size>50 1 8</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.85 0.85 0.9 1</ambient>
+            <diffuse>0.9 0.9 0.95 1</diffuse>
+          </material>
+        </visual>
+        <visual name="banner">
+          <pose>0 0 3.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>30 0.2 1.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.1 0.1 1</ambient>
+            <diffuse>0.9 0.2 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Zebra-style crosswalk in front of store -->
+    <model name="crosswalk">
+      <static>true</static>
+      <link name="link">
+        <visual name="stripe1">
+          <pose>-3 -18 0.02 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.0 0.4 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.9 1</ambient>
+            <diffuse>1.0 1.0 1.0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="stripe2">
+          <pose>-1.8 -18 0.02 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.0 0.4 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.9 1</ambient>
+            <diffuse>1.0 1.0 1.0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="stripe3">
+          <pose>-0.6 -18 0.02 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.0 0.4 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.9 1</ambient>
+            <diffuse>1.0 1.0 1.0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="stripe4">
+          <pose>0.6 -18 0.02 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.0 0.4 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.9 1</ambient>
+            <diffuse>1.0 1.0 1.0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="stripe5">
+          <pose>1.8 -18 0.02 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.0 0.4 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.9 1</ambient>
+            <diffuse>1.0 1.0 1.0 1</diffuse>
+          </material>
+        </visual>
+        <visual name="stripe6">
+          <pose>3.0 -18 0.02 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.0 0.4 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.9 1</ambient>
+            <diffuse>1.0 1.0 1.0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Parking stalls row (6 nice rectangular slots) -->
+    <model name="parking_stalls_row1">
+      <static>true</static>
+      <link name="link">
+        <!-- Stall centers at x = -15, -9, -3, 3, 9, 15 (y ~2) -->
+        <!-- Stall 1 -->
+        <visual name="stall1_left">
+          <pose>-16.3 2 0.02 0 0 0</pose>
+          <geometry><box><size>0.1 5.0 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <visual name="stall1_right">
+          <pose>-13.7 2 0.02 0 0 0</pose>
+          <geometry><box><size>0.1 5.0 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <visual name="stall1_back">
+          <pose>-15 4.5 0.02 0 0 0</pose>
+          <geometry><box><size>2.6 0.1 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+
+        <!-- Stall 2 -->
+        <visual name="stall2_left">
+          <pose>-10.3 2 0.02 0 0 0</pose>
+          <geometry><box><size>0.1 5.0 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <visual name="stall2_right">
+          <pose>-7.7 2 0.02 0 0 0</pose>
+          <geometry><box><size>0.1 5.0 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <visual name="stall2_back">
+          <pose>-9 4.5 0.02 0 0 0</pose>
+          <geometry><box><size>2.6 0.1 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+
+        <!-- Stall 3 -->
+        <visual name="stall3_left">
+          <pose>-4.3 2 0.02 0 0 0</pose>
+          <geometry><box><size>0.1 5.0 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <visual name="stall3_right">
+          <pose>-1.7 2 0.02 0 0 0</pose>
+          <geometry><box><size>0.1 5.0 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <visual name="stall3_back">
+          <pose>-3 4.5 0.02 0 0 0</pose>
+          <geometry><box><size>2.6 0.1 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+
+        <!-- Stall 4 -->
+        <visual name="stall4_left">
+          <pose>1.7 2 0.02 0 0 0</pose>
+          <geometry><box><size>0.1 5.0 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <visual name="stall4_right">
+          <pose>4.3 2 0.02 0 0 0</pose>
+          <geometry><box><size>0.1 5.0 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <visual name="stall4_back">
+          <pose>3 4.5 0.02 0 0 0</pose>
+          <geometry><box><size>2.6 0.1 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+
+        <!-- Stall 5 -->
+        <visual name="stall5_left">
+          <pose>7.7 2 0.02 0 0 0</pose>
+          <geometry><box><size>0.1 5.0 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <visual name="stall5_right">
+          <pose>10.3 2 0.02 0 0 0</pose>
+          <geometry><box><size>0.1 5.0 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <visual name="stall5_back">
+          <pose>9 4.5 0.02 0 0 0</pose>
+          <geometry><box><size>2.6 0.1 0.02</size></box></geometry>
+          <material><ambient>0.9 0.9 0.9 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Function to define a car with wheels: just copy and change x / color -->
+    <!-- Parked car 1 -->
+    <model name="parked_car_1">
+      <static>true</static>
+      <link name="body">
+        <pose>-15 2.5 0.7 0 0 0</pose>
+        <visual name="car_body">
+          <geometry><box><size>1.8 4.5 1.4</size></box></geometry>
+          <material><ambient>0.1 0.1 0.6 1</ambient><diffuse>0.2 0.2 0.8 1</diffuse></material>
+        </visual>
+        <!-- wheels at bottom (z offset -0.45, radius 0.25) -->
+        <visual name="wheel_fl">
+          <pose>-0.8 1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_fr">
+          <pose>0.8 1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_rl">
+          <pose>-0.8 -1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_rr">
+          <pose>0.8 -1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Parked car 2 -->
+    <model name="parked_car_2">
+      <static>true</static>
+      <link name="body">
+        <pose>-9 2.5 0.7 0 0 0</pose>
+        <visual name="car_body">
+          <geometry><box><size>1.8 4.5 1.4</size></box></geometry>
+          <material><ambient>0.1 0.5 0.1 1</ambient><diffuse>0.2 0.7 0.2 1</diffuse></material>
+        </visual>
+        <visual name="wheel_fl">
+          <pose>-0.8 1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_fr">
+          <pose>0.8 1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_rl">
+          <pose>-0.8 -1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_rr">
+          <pose>0.8 -1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Parked car 3 -->
+    <model name="parked_car_3">
+      <static>true</static>
+      <link name="body">
+        <pose>-3 2.5 0.7 0 0 0</pose>
+        <visual name="car_body">
+          <geometry><box><size>1.8 4.5 1.4</size></box></geometry>
+          <material><ambient>0.6 0.4 0.1 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+        <visual name="wheel_fl">
+          <pose>-0.8 1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_fr">
+          <pose>0.8 1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_rl">
+          <pose>-0.8 -1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_rr">
+          <pose>0.8 -1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Parked car 4 -->
+    <model name="parked_car_4">
+      <static>true</static>
+      <link name="body">
+        <pose>3 2.5 0.7 0 0 0</pose>
+        <visual name="car_body">
+          <geometry><box><size>1.8 4.5 1.4</size></box></geometry>
+          <material><ambient>0.3 0.1 0.4 1</ambient><diffuse>0.5 0.2 0.6 1</diffuse></material>
+        </visual>
+        <visual name="wheel_fl">
+          <pose>-0.8 1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_fr">
+          <pose>0.8 1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_rl">
+          <pose>-0.8 -1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_rr">
+          <pose>0.8 -1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Parked car 5 -->
+    <model name="parked_car_5">
+      <static>true</static>
+      <link name="body">
+        <pose>9 2.5 0.7 0 0 0</pose>
+        <visual name="car_body">
+          <geometry><box><size>1.8 4.5 1.4</size></box></geometry>
+          <material><ambient>0.2 0.2 0.2 1</ambient><diffuse>0.4 0.4 0.4 1</diffuse></material>
+        </visual>
+        <visual name="wheel_fl">
+          <pose>-0.8 1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_fr">
+          <pose>0.8 1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_rl">
+          <pose>-0.8 -1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_rr">
+          <pose>0.8 -1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Moving car (this one will be animated via ROS commands) -->
+    <model name="moving_car">
+      <static>true</static>
+      <link name="body">
+        <!-- initial pose; we'll override with set_entity_pose -->
+        <pose>-8 0 0.7 0 0 0</pose>
+        <visual name="car_body">
+          <geometry><box><size>1.8 4.5 1.4</size></box></geometry>
+          <material><ambient>0.8 0.1 0.1 1</ambient><diffuse>1.0 0.2 0.2 1</diffuse></material>
+        </visual>
+        <visual name="wheel_fl">
+          <pose>-0.8 1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_fr">
+          <pose>0.8 1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_rl">
+          <pose>-0.8 -1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+        <visual name="wheel_rr">
+          <pose>0.8 -1.6 -0.45 1.57 0 0</pose>
+          <geometry><cylinder><radius>0.25</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.1 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
 
   </world>
 </sdf>

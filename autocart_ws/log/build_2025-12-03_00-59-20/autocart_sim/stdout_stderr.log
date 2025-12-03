@@ -1,0 +1,44 @@
+running egg_info
+creating ../../build/autocart_sim/autocart_sim.egg-info
+writing ../../build/autocart_sim/autocart_sim.egg-info/PKG-INFO
+writing dependency_links to ../../build/autocart_sim/autocart_sim.egg-info/dependency_links.txt
+writing entry points to ../../build/autocart_sim/autocart_sim.egg-info/entry_points.txt
+writing requirements to ../../build/autocart_sim/autocart_sim.egg-info/requires.txt
+writing top-level names to ../../build/autocart_sim/autocart_sim.egg-info/top_level.txt
+writing manifest file '../../build/autocart_sim/autocart_sim.egg-info/SOURCES.txt'
+reading manifest file '../../build/autocart_sim/autocart_sim.egg-info/SOURCES.txt'
+writing manifest file '../../build/autocart_sim/autocart_sim.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/pinky/autocart_ws/build/autocart_sim/build
+creating /home/pinky/autocart_ws/build/autocart_sim/build/lib
+creating /home/pinky/autocart_ws/build/autocart_sim/build/lib/autocart_sim
+copying autocart_sim/__init__.py -> /home/pinky/autocart_ws/build/autocart_sim/build/lib/autocart_sim
+running install
+running install_lib
+creating /home/pinky/autocart_ws/install/autocart_sim/lib/python3.12/site-packages/autocart_sim
+copying /home/pinky/autocart_ws/build/autocart_sim/build/lib/autocart_sim/__init__.py -> /home/pinky/autocart_ws/install/autocart_sim/lib/python3.12/site-packages/autocart_sim
+byte-compiling /home/pinky/autocart_ws/install/autocart_sim/lib/python3.12/site-packages/autocart_sim/__init__.py to __init__.cpython-312.pyc
+running install_data
+creating /home/pinky/autocart_ws/install/autocart_sim/share/ament_index
+creating /home/pinky/autocart_ws/install/autocart_sim/share/ament_index/resource_index
+creating /home/pinky/autocart_ws/install/autocart_sim/share/ament_index/resource_index/packages
+copying resource/autocart_sim -> /home/pinky/autocart_ws/install/autocart_sim/share/ament_index/resource_index/packages
+copying package.xml -> /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim
+creating /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/launch
+copying autocart_sim/launch/gazebo_world.launch.py -> /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/launch
+copying autocart_sim/launch/cart_bringup.launch.py -> /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/launch
+creating /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/worlds
+copying autocart_sim/worlds/stopandshop_brigham.world -> /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/worlds
+creating /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/models
+copying autocart_sim/models/cart.urdf -> /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/models
+running install_egg_info
+Copying ../../build/autocart_sim/autocart_sim.egg-info to /home/pinky/autocart_ws/install/autocart_sim/lib/python3.12/site-packages/autocart_sim-0.0.1-py3.12.egg-info
+running install_scripts
+Installing ekf_fusion_node script to /home/pinky/autocart_ws/install/autocart_sim/lib/autocart_sim
+Installing gps_odom_node script to /home/pinky/autocart_ws/install/autocart_sim/lib/autocart_sim
+Installing imu_odom_node script to /home/pinky/autocart_ws/install/autocart_sim/lib/autocart_sim
+Installing lane_camera_node script to /home/pinky/autocart_ws/install/autocart_sim/lib/autocart_sim
+Installing stuck_detector_node script to /home/pinky/autocart_ws/install/autocart_sim/lib/autocart_sim
+Installing waypoint_nav_node script to /home/pinky/autocart_ws/install/autocart_sim/lib/autocart_sim
+writing list of installed files to '/home/pinky/autocart_ws/build/autocart_sim/install.log'
