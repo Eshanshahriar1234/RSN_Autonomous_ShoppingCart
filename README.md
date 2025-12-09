@@ -4,7 +4,7 @@
 
 ---
 
-## 🛒 Project Overview
+## Project Overview
 
 This project simulates an **autonomous shopping cart** that returns itself from a customer's parked car back to the **Cart Home Zone** outside **Stop & Shop, Brigham Circle – Boston**.
 
@@ -21,7 +21,7 @@ No hardware is required.
 
 ---
 
-## 📦 Technologies Used
+## Technologies Used
 - **ROS2**
 - **Gazebo/Ignition**
 - **Python**
@@ -32,7 +32,7 @@ No hardware is required.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 autocart_sim/
@@ -56,7 +56,7 @@ autocart_sim/
 
 ---
 
-## 🗺 Custom World: Stop & Shop Brigham Circle
+## Custom World: Stop & Shop Brigham Circle
 
 We manually created a simple Gazebo world inspired by:
 - The **parking lane layout**
@@ -68,7 +68,7 @@ This mirrors the real usability scenario.
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### 1. Clone Repository
 ```bash
@@ -85,7 +85,7 @@ source install/setup.bash
 
 ---
 
-## ▶️ Running The Simulation
+## Running The Simulation
 
 ### 1. Launch Gazebo world + spawn cart + bringup nodes
 ```bash
@@ -99,7 +99,7 @@ This will:
 
 ---
 
-## 📡 Nodes Overview
+## Nodes Overview
 
 ### **1. lane_camera_node.py**
 - Extracts lane markings (HSV threshold)
@@ -138,7 +138,7 @@ Publishes: `/cart_stuck_alert`
 
 ---
 
-## 🎥 Recommended Demo Flow
+## Recommended Demo Flow
 
 1. Start at a parking spot (near car)  
 2. Cart begins autonomous return  
@@ -151,7 +151,7 @@ Publishes: `/cart_stuck_alert`
 
 ---
 
-## 🧪 Evaluation Metrics
+## Evaluation Metrics
 
 - RMSE of fused pose vs ground truth  
 - Lane following accuracy  
@@ -161,7 +161,7 @@ Publishes: `/cart_stuck_alert`
 
 ---
 
-## 👥 Team Members
+## Team Members
 - RM – Simulation world, camera perception  
 - Rohit – IMU processing  
 - Dhanush – GPS + navigation  
@@ -169,6 +169,6 @@ Publishes: `/cart_stuck_alert`
 
 ---
 
-## 📜 License
+## License
 MIT License
 
