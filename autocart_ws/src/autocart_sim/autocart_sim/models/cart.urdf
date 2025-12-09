@@ -23,7 +23,97 @@
     </collision>
   </link>
 
-  <!-- Simple differential drive wheels could be added; for now rely on existing base plugin in your sim -->
+  <!-- Left Wheel-->
+  <link name="left_wheel">
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.02" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz ="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel"/>
+    <origin xyz="-0.2 0.35 0.1" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- Right Wheel -->
+  <link name="right_wheel">
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz ="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel"/>
+    <origin xyz="-0.2 -0.35 0.1" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- Front Caster -->
+  <link name="front_caster">
+    <inertial>
+      <mass value="0.5"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="front_caster_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_caster"/>
+    <origin xyz="0.3 0 0.05" rpy="0 0 0"/>
+  </joint>
 
   <!-- IMU sensor -->
   <link name="imu_link">
@@ -78,28 +168,43 @@
         </image>
         <clip>
           <near>0.1</near>
-          <far>50.0</far>
+          <far>50</far>
         </clip>
       </camera>
-      <always_on>true</always_on>
+      <always_on>1</always_on>
       <visualize>true</visualize>
-      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-        <robotNamespace>/</robotNamespace>
-        <cameraName>front</cameraName>
-        <imageTopicName>/camera/front/image_raw</imageTopicName>
-      </plugin>
+      <topic>camera/image</topic>
     </sensor>
   </gazebo>
 
   <gazebo reference="imu_link">
-    <sensor type="imu" name="imu_sensor">
+    <sensor name="imu_sensor" type="imu">
       <always_on>true</always_on>
       <update_rate>50</update_rate>
-      <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
-        <robotNamespace>/</robotNamespace>
-        <output>imu/data</output>
-      </plugin>
+      <topic>imu/data</topic>
     </sensor>
   </gazebo>
+
+  <gazebo>
+  <plugin filename="libgz-sim-diff-drive-system.so" name="gz::sim::systems::DiffDrive">
+    <left_joint>left_wheel_joint</left_joint>
+    <right_joint>right_wheel_joint</right_joint>
+    <wheel_separation>0.7</wheel_separation>
+    <wheel_radius>0.1</wheel_radius>
+    <max_linear_acceleration>1.0</max_linear_acceleration>
+    <min_linear_acceleration>-1.0</min_linear_acceleration>
+    <max_angular_acceleration>2.0</max_angular_acceleration>
+    <min_angular_acceleration>-2.0</min_angular_acceleration>
+    <max_linear_velocity>0.5</max_linear_velocity>
+    <min_linear_velocity>-0.5</min_linear_velocity>
+    <max_angular_velocity>1.0</max_angular_velocity>
+    <min_angular_velocity>-1.0</min_angular_velocity>
+    <topic>/cmd_vel</topic>
+    <odom_topic>/odom</odom_topic>
+    <frame_id>odom</frame_id>
+    <child_frame_id>base_link</child_frame_id>
+    <odom_publish_frequency>50</odom_publish_frequency>
+  </plugin>
+</gazebo>
 
 </robot>
