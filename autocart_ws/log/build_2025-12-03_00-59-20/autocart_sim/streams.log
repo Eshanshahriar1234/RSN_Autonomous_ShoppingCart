@@ -1,0 +1,46 @@
+[0.963s] Invoking command in '/home/pinky/autocart_ws/src/autocart_sim': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/pinky/autocart_ws/build/autocart_sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/pinky/autocart_ws/install/autocart_sim/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/autocart_sim build --build-base /home/pinky/autocart_ws/build/autocart_sim/build install --record /home/pinky/autocart_ws/build/autocart_sim/install.log --single-version-externally-managed install_data
+[1.212s] running egg_info
+[1.212s] creating ../../build/autocart_sim/autocart_sim.egg-info
+[1.227s] writing ../../build/autocart_sim/autocart_sim.egg-info/PKG-INFO
+[1.227s] writing dependency_links to ../../build/autocart_sim/autocart_sim.egg-info/dependency_links.txt
+[1.227s] writing entry points to ../../build/autocart_sim/autocart_sim.egg-info/entry_points.txt
+[1.227s] writing requirements to ../../build/autocart_sim/autocart_sim.egg-info/requires.txt
+[1.227s] writing top-level names to ../../build/autocart_sim/autocart_sim.egg-info/top_level.txt
+[1.228s] writing manifest file '../../build/autocart_sim/autocart_sim.egg-info/SOURCES.txt'
+[1.271s] reading manifest file '../../build/autocart_sim/autocart_sim.egg-info/SOURCES.txt'
+[1.272s] writing manifest file '../../build/autocart_sim/autocart_sim.egg-info/SOURCES.txt'
+[1.272s] running build
+[1.272s] running build_py
+[1.273s] creating /home/pinky/autocart_ws/build/autocart_sim/build
+[1.273s] creating /home/pinky/autocart_ws/build/autocart_sim/build/lib
+[1.273s] creating /home/pinky/autocart_ws/build/autocart_sim/build/lib/autocart_sim
+[1.273s] copying autocart_sim/__init__.py -> /home/pinky/autocart_ws/build/autocart_sim/build/lib/autocart_sim
+[1.273s] running install
+[1.280s] running install_lib
+[1.299s] creating /home/pinky/autocart_ws/install/autocart_sim/lib/python3.12/site-packages/autocart_sim
+[1.299s] copying /home/pinky/autocart_ws/build/autocart_sim/build/lib/autocart_sim/__init__.py -> /home/pinky/autocart_ws/install/autocart_sim/lib/python3.12/site-packages/autocart_sim
+[1.300s] byte-compiling /home/pinky/autocart_ws/install/autocart_sim/lib/python3.12/site-packages/autocart_sim/__init__.py to __init__.cpython-312.pyc
+[1.300s] running install_data
+[1.300s] creating /home/pinky/autocart_ws/install/autocart_sim/share/ament_index
+[1.300s] creating /home/pinky/autocart_ws/install/autocart_sim/share/ament_index/resource_index
+[1.300s] creating /home/pinky/autocart_ws/install/autocart_sim/share/ament_index/resource_index/packages
+[1.300s] copying resource/autocart_sim -> /home/pinky/autocart_ws/install/autocart_sim/share/ament_index/resource_index/packages
+[1.301s] copying package.xml -> /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim
+[1.301s] creating /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/launch
+[1.301s] copying autocart_sim/launch/gazebo_world.launch.py -> /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/launch
+[1.301s] copying autocart_sim/launch/cart_bringup.launch.py -> /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/launch
+[1.301s] creating /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/worlds
+[1.301s] copying autocart_sim/worlds/stopandshop_brigham.world -> /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/worlds
+[1.301s] creating /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/models
+[1.301s] copying autocart_sim/models/cart.urdf -> /home/pinky/autocart_ws/install/autocart_sim/share/autocart_sim/models
+[1.301s] running install_egg_info
+[1.322s] Copying ../../build/autocart_sim/autocart_sim.egg-info to /home/pinky/autocart_ws/install/autocart_sim/lib/python3.12/site-packages/autocart_sim-0.0.1-py3.12.egg-info
+[1.323s] running install_scripts
+[1.485s] Installing ekf_fusion_node script to /home/pinky/autocart_ws/install/autocart_sim/lib/autocart_sim
+[1.485s] Installing gps_odom_node script to /home/pinky/autocart_ws/install/autocart_sim/lib/autocart_sim
+[1.485s] Installing imu_odom_node script to /home/pinky/autocart_ws/install/autocart_sim/lib/autocart_sim
+[1.485s] Installing lane_camera_node script to /home/pinky/autocart_ws/install/autocart_sim/lib/autocart_sim
+[1.485s] Installing stuck_detector_node script to /home/pinky/autocart_ws/install/autocart_sim/lib/autocart_sim
+[1.486s] Installing waypoint_nav_node script to /home/pinky/autocart_ws/install/autocart_sim/lib/autocart_sim
+[1.486s] writing list of installed files to '/home/pinky/autocart_ws/build/autocart_sim/install.log'
+[1.510s] Invoked command in '/home/pinky/autocart_ws/src/autocart_sim' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/pinky/autocart_ws/build/autocart_sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/pinky/autocart_ws/install/autocart_sim/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/autocart_sim build --build-base /home/pinky/autocart_ws/build/autocart_sim/build install --record /home/pinky/autocart_ws/build/autocart_sim/install.log --single-version-externally-managed install_data
