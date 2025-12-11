@@ -1,7 +1,5 @@
 from setuptools import setup
-
 package_name = 'autocart_sim'
-
 setup(
     name=package_name,
     version='0.0.1',
@@ -13,12 +11,14 @@ setup(
         ('share/' + package_name + '/launch', [
             'autocart_sim/launch/gazebo_world.launch.py',
             'autocart_sim/launch/cart_bringup.launch.py',
+            'autocart_sim/launch/complete_sim.launch.py',
         ]),
         ('share/' + package_name + '/worlds', [
             'autocart_sim/worlds/stopandshop_brigham.world',
         ]),
         ('share/' + package_name + '/models', [
             'autocart_sim/models/cart.urdf',
+            'autocart_sim/models/cart.sdf',
         ]),
     ],
     install_requires=['setuptools'],
@@ -39,4 +39,3 @@ setup(
         ],
     },
 )
-
