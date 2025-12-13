@@ -159,16 +159,6 @@ Publishes: `/cart_stuck_alert`
 - Stuck detection accuracy  
 - Completion time  
 
----
-
-## Team Members
-- RM – Simulation world, camera perception  
-- Rohit – IMU processing  
-- Dhanush – GPS + navigation  
-- Ishaan – EKF fusion + safety  
-
----
-
 ## License
 MIT License
 
