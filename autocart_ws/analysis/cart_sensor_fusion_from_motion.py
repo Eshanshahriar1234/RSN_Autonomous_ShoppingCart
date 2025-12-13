@@ -2,7 +2,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Same timing as motion script
 dt = 0.1
 T  = 12.0
 N  = int(T / dt)
@@ -69,20 +68,15 @@ for k in range(1, N):
     # --- Prediction ---
     # Convert noisy IMU speed + yaw_rate to vx, vy
     v = max(imu_speed[k], 0.0)
-    # (For simplicity we still use true heading as a reference.
-    #  You could also integrate imu_yaw_rate here.)
     theta = heading_true[k]
     vx_imu = v * np.cos(theta)
     vy_imu = v * np.sin(theta)
 
     x_pred = F @ x_est[:, k-1]
-    # mix in IMU-based velocity (simple fusion in the process model)
     x_pred[2] = 0.7 * x_pred[2] + 0.3 * vx_imu
     x_pred[3] = 0.7 * x_pred[3] + 0.3 * vy_imu
 
     P_pred = F @ P @ F.T + Q
-
-    # --- Update with GPS ---
     z = np.array([gps_x[k], gps_y[k]])
     y_res = z - H @ x_pred
     S = H @ P_pred @ H.T + R
